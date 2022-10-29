@@ -12,7 +12,7 @@ export class AuthService {
 
   async login(user: User) {
     const payload = {
-      userName: user.userName,
+      userName: user.email,
       sub: user.id,
     };
     return {
@@ -21,14 +21,13 @@ export class AuthService {
   }
 
   async validateUser(
-    userName: string,
+    email: string,
     password: string,
-  ): Promise<Pick<User, 'id' | 'userName'> | null> {
-    const user = await this.userService.findOne(userName);
+  ): Promise<Pick<User, 'id' | 'email'> | null> {
+    const user = await this.userService.findOne(email);
 
     if (user && user.password === password) {
-      const { password, ...result } = user;
-      return result;
+      return user;
     }
 
     return null;

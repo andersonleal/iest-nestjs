@@ -17,26 +17,22 @@ export class UsersController {
 
   @Get()
   async findAll() {
-    const userResponse = await this.userService.findAll();
-    return userResponse;
+    return await this.userService.findAll();
   }
 
   @Get(':id')
   @UseInterceptors(ClassSerializerInterceptor)
   async findOne(@Param('id') id: number) {
-    const userResponse = await this.userService.findOneById(id);
-    return userResponse;
+    return await this.userService.findOneById(id);
   }
 
   @Put(':id')
   async update(@Body() user: User, @Param('id') id: number) {
-    const userResponse = await this.userService.update(id, user);
-    return userResponse;
+    return await this.userService.update(id, user);
   }
 
   @Post()
   async create(@Body() user: User) {
-    const userResponse = await this.userService.create(user);
-    return userResponse;
+    return await this.userService.create(user);
   }
 }

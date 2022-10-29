@@ -7,17 +7,17 @@ export class User extends BaseEntity {
   id: number;
 
   @Column()
-  userName: string;
+  email: string;
 
   @Column()
   @Exclude()
   password: string;
 
-  @Column()
+  @Column({ nullable: true })
   role?: string;
 
   @Expose()
   get nameAndRole() {
-    return `${this.userName} - ${this.role}`;
+    return `${this.email} - ${this.role}`;
   }
 }

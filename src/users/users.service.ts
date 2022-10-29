@@ -15,13 +15,11 @@ export class UsersService {
   }
 
   async findOneById(id: number) {
-    const user = await this.userRepository.findOne({ where: { id } });
-    return user;
+    return await this.userRepository.findOne({ where: { id } });
   }
 
-  async findOne(userName: string) {
-    const user = await this.userRepository.findOne({ where: { userName } });
-    return user;
+  async findOne(email: string) {
+    return await this.userRepository.findOne({ where: { email } });
   }
 
   async findAll() {
